@@ -40,3 +40,6 @@ gem 'spring',        group: :development
 
 gem 'bcrypt-ruby', :require => 'bcrypt' 
 gem 'devise'
+group :production do
+	gem 'pg'
+end
