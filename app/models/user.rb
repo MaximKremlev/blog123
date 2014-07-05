@@ -13,4 +13,7 @@ class User < ActiveRecord::Base
 	validates :password, :confirmation => true
 	validates_length_of :password, :in => 6..20, :on => :create
 
+	def to_param
+		name
+	end
 end
