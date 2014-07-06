@@ -4,5 +4,16 @@ Text:
 <%= @post.text %>
 Like:
 <%= @post.like %>
+<% @post.comments.each do |comment| %>
+	Text:
+	<%= comment.body %>
+<% end %>
+Add a comment:
+<%= form_for([@post, @post.comments.build]) do |f| %>
+	<%= f.label :body %><br>
+	<%= f.text_area :body %>
+
+	<%= f.submit %>
+<% end %>
 <%= link_to 'Back', posts_path %>
 | <%= link_to 'Edit', edit_post_path(@post) %>

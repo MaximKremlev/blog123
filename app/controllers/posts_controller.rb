@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+	before_filter :find_post, except: [:index, :new]
+
 	def new
 		@post = Post.new
 	end
@@ -6,9 +8,8 @@ class PostsController < ApplicationController
 	def index
 		@posts = Post.all
 	end
-	def update
-		@post = Post.find(params[id])
 
+	def update
 		if @post.update(post_params)
 			redirect_to @post
 		else
@@ -17,30 +18,29 @@ class PostsController < ApplicationController
 	end
 
 	def edit
-		@post = Post.find(params[:id])
 	end
 
 	def create
 		@post = Post.new(post_params)
 
-		if @post.save
-			redirect_to @post
-		else
-			render 'new'
-		end
+		@post.save ? redirect_to(@post) : render('new')
 	end
+
 	def destroy
-		@post = POst.find(params[:id])
 		@post.destroy
 
-		redirect_to post_path
+		redirect_to posts_path
 	end
 
 	def show
-		@post = Post.find(params[:id])
 	end
 
 	private
+
+  def find_post
+    @post = Post.find(params[:id])
+  end
+
 	def post_params
 		params.require(:post).permit(:title,:text,:like)
 	end

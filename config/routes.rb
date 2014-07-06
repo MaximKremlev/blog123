@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :posts 
   resources :users
-  resources :comments
 
+  resources :posts, constraints: {id: /\d.+/} do
+    resources :comments
+  end
   root 'welcome#index'
   get 'users/profile', as: 'user_root'
   # The priority is based upon order of creation: first created -> highest priority.
