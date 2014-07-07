@@ -7,6 +7,10 @@ Like:
 <% @post.comments.each do |comment| %>
 	Text:
 	<%= comment.body %>
+
+    <%= link_to 'Destroy Comment', [comment.post, comment],
+                #method: :delete,
+                data: { confirm: 'Are you sure?' } %>
 <% end %>
 Add a comment:
 <%= form_for([@post, @post.comments.build]) do |f| %>

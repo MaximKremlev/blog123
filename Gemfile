@@ -46,6 +46,7 @@ end
 gem 'bcrypt-ruby', :require => 'bcrypt' 
 gem 'devise'
 gem 'pg'
+gem 'foundation-rails'
 # group :production do
 # 	gem 'pg'
 # end

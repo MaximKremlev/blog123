@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :find_post, except: [:index, :new]
+  before_filter :find_post, except: [:index, :create, :new]
 
   def new
     @post = Post.new()
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
   private
 
   def find_post
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:id][/(\d)+/])
   end
 
   def post_params
