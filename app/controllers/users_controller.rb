@@ -12,12 +12,15 @@ class UsersController < ApplicationController
 		else
 			flash[:notice] = "Form is invalid"
 			flash[:color] = "valid"
-		end
+    end
+
 		render "new"
-	end
+  end
+
 	def show
 		@user = User.new
-	end
+  end
+
 	def user_params
 		params.require(:user).permit(:name, :email, :password, :salt, :encrypted_password)
 	end
